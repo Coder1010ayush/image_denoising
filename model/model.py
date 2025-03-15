@@ -8,6 +8,8 @@ import pandas as pd
 from PIL import Image
 from matplotlib import pyplot as plt
 
+from model.utils import NNRegressor
+
 
 class DnCNN(NNRegressor):
 

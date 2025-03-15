@@ -65,25 +65,25 @@ class Experiment:
         batch_size=16,
         perform_validation_during_training=False,
     ):
-        train_loader = td.DataLoader(
+        self.train_loader = td.DataLoader(
             train_set,
             batch_size=batch_size,
             shuffle=True,
             drop_last=True,
             pin_memory=True,
         )
-        val_loader = td.DataLoader(
+        self.val_loader = td.DataLoader(
             val_set,
             batch_size=batch_size,
             shuffle=False,
             drop_last=True,
             pin_memory=True,
         )
-        history = []
+        self.history = []
         if output_dir is None:
             output_dir = "experiment_{}".format(time.time())
         os.makedirs(output_dir, exist_ok=True)
-        checkpoint_path = os.path.join(output_dir, "checkpoint.pth.tar")
+        self.checkpoint_path = os.path.join(output_dir, "checkpoint.pth.tar")
         config_path = os.path.join(output_dir, "config.txt")
         locs = {k: v for k, v in locals().items() if k != "self"}
         self.__dict__.update(locs)
